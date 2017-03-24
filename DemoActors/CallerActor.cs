@@ -17,10 +17,11 @@ namespace DemoActors
         {
             _receiver = Context.ActorOf<ReceiverActor>("receiver");
 
-            Receive<int>(m =>
+            ReceiveAsync<int>(async m =>
             {
                 Console.WriteLine($"message #{m} recieved by caller");
-                _asyncCallClient.CallWithDelayedResponse().PipeTo(_receiver);
+                var delay = await _asyncCallClient.CallWithDelayedResponse();
+                _receiver.Tell(delay);
             });
         }
 

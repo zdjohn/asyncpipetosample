@@ -1,28 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Nito.AsyncEx;
+using System;
 using System.Threading.Tasks;
 
 namespace AsyncRpcEmulator
 {
-    public class AsyncCallEmulator
+    public class AsyncCallEmulator 
     {
         private readonly int _min = 20;
         private readonly int _max = 500;
         private static Random random = new Random();
+        private readonly AsyncSemaphore _semaphore;
+        private readonly object _mutex;
 
-        public AsyncCallEmulator() { }
-        public AsyncCallEmulator(int min, int max)
+        public AsyncCallEmulator()
+        {
+            _mutex = new object();
+            _semaphore = new AsyncSemaphore(3);
+        }
+        public AsyncCallEmulator(int min, int max) : this()
         {
             _min = min;
             _max = max;
         }
 
         public async Task<int> CallWithDelayedResponse()
-        {
+        {  
+            _semaphore.Wait();
             var delay = random.Next(_min, _max);
+            Console.WriteLine($"call open with expected delay of {delay}");
             await Task.Delay(delay).ConfigureAwait(false);
+            Console.WriteLine($"call closed with delay {delay}");
+            _semaphore.Release();
+
             return delay;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.Routing;
+using AsyncRpcEmulator;
 using DemoActors;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace ConsoleDemo
         {
             using (var system = ActorSystem.Create("demo"))
             {
-                var props = Props.Create<CallerActor>()
-                    //.WithRouter(new RoundRobinPool(5))
-                    ;
+                var fackApiClient = new AsyncCallEmulator(20, 100);
+
+                var props = Props.Create(() => new CallerActor(fackApiClient))
+                    .WithRouter(new RoundRobinPool(5));
+
                 var caller = system.ActorOf(props, "caller");
-                for(int i=0; i<10; i++)
+                for(int i=0; i<100; i++)
                 {
                     caller.Tell(i);
                 }

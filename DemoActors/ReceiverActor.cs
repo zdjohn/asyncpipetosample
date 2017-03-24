@@ -13,7 +13,7 @@ namespace DemoActors
         {
             Receive<int>(m =>
             {
-                Console.WriteLine($"message recieved with delay: {m}ms");
+                Console.WriteLine($"receiver received message with delay: {m}ms");
             });
         }
     }

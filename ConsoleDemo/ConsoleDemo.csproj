@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AsyncRpcEmulator\AsyncRpcEmulator.csproj">
+      <Project>{139534BC-E8B4-4753-AAAC-2D629CBFF60B}</Project>
+      <Name>AsyncRpcEmulator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemoActors\DemoActors.csproj">
       <Project>{B827F979-9D66-4AFF-B602-4DF5AE9247AD}</Project>
       <Name>DemoActors</Name>

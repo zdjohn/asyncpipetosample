@@ -19,7 +19,7 @@ namespace DemoActors
 
             Receive<int>(m =>
             {
-                Console.WriteLine($"#{m} message recieved");
+                Console.WriteLine($"message #{m} recieved by caller");
                 _asyncCallClient.CallWithDelayedResponse().PipeTo(_receiver);
             });
         }

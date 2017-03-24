@@ -10,12 +10,10 @@ namespace AsyncRpcEmulator
         private readonly int _max = 500;
         private static Random random = new Random();
         private readonly AsyncSemaphore _semaphore;
-        private readonly object _mutex;
 
         public AsyncCallEmulator()
         {
-            _mutex = new object();
-            _semaphore = new AsyncSemaphore(3);
+            _semaphore = new AsyncSemaphore(5);
         }
         public AsyncCallEmulator(int min, int max) : this()
         {

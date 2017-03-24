@@ -22,7 +22,9 @@ namespace AsyncRpcEmulator
         public async Task<int> CallWithDelayedResponse()
         {
             var delay = random.Next(_min, _max);
+            //Console.WriteLine($"call open with expected delay of {delay}");
             await Task.Delay(delay).ConfigureAwait(false);
+            //Console.WriteLine($"call closed with delay {delay}");
             return delay;
         }
     }

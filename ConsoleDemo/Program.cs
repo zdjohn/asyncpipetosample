@@ -19,7 +19,7 @@ namespace ConsoleDemo
                     //.WithRouter(new RoundRobinPool(5))
                     ;
                 var caller = system.ActorOf(props, "caller");
-                for(int i=0; i<10; i++)
+                for(int i=0; i<100; i++)
                 {
                     caller.Tell(i);
                 }

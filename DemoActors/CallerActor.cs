@@ -11,7 +11,7 @@ namespace DemoActors
     public class CallerActor : ReceiveActor
     {
         private readonly IActorRef _receiver;
-        private readonly AsyncCallEmulator _asyncCallClient = new AsyncCallEmulator(20,300);
+        private readonly AsyncCallEmulator _asyncCallClient = new AsyncCallEmulator(20,100);
 
         public CallerActor()
         {

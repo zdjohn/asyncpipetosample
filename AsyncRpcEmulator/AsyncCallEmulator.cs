@@ -22,8 +22,9 @@ namespace AsyncRpcEmulator
         }
 
         public async Task<int> CallWithDelayedResponse()
-        {  
-            _semaphore.Wait();
+        {
+            await _semaphore.WaitAsync();
+            //_semaphore.Wait(); will cause blocking 
             var delay = random.Next(_min, _max);
             Console.WriteLine($"call open with expected delay of {delay}");
             await Task.Delay(delay).ConfigureAwait(false);

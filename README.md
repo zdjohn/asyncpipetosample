@@ -1,4 +1,4 @@
-# asyncpipetosample
+# Async Await in akka.net ReceiveAsync v.s. PipeTo
 use case compare between akka.net PipeTo and ReceiveAsync
 
 this is a sample code for https://medium.com/zdjohn/multi-threading-in-akka-net-async-v-s-pipeto-60967f0b312a
